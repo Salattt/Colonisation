@@ -5,9 +5,13 @@ public class Bot : MonoBehaviour
 {
     [SerializeField] private BotMover _mover;
     [SerializeField] private Collector _collector;
+    [SerializeField] private FlagSearcher _flagSearcher;
+
+    private Resource _currentResource;
 
     public event Action<Bot> ResourceTransfered;
     public event Action<Bot> ResourceCollected;
+    public event Action<Bot> FlagDetected;
 
     public Transform Transform { get; private set; }
 
@@ -19,11 +23,28 @@ public class Bot : MonoBehaviour
     private void OnEnable()
     {
         _collector.ResourceCollected += OnResourceCollected;
+        _flagSearcher.FlagDetected += OnFlagDetected;
     }
 
     private void OnDisable()
     {
         _collector.ResourceCollected -= OnResourceCollected;
+        _flagSearcher.FlagDetected -= OnFlagDetected;
+    }
+
+    public bool TryGetResource(out Resource resource)
+    {
+        resource = null;
+
+        if (_currentResource != null)
+        {
+            resource = _currentResource;
+            _currentResource = null;
+
+            return true;
+        }
+
+        return false;
     }
 
     public void SetupTarget(Resource target)
@@ -47,9 +68,16 @@ public class Bot : MonoBehaviour
         ResourceTransfered?.Invoke(this);
     }
 
-    private void OnResourceCollected()
+    private void OnResourceCollected(Resource resource)
     {
+        _currentResource = resource;
+
         _mover.Stop();
         ResourceCollected?.Invoke(this);
+    }
+
+    private void OnFlagDetected()
+    {
+        FlagDetected?.Invoke(this);
     }
 }

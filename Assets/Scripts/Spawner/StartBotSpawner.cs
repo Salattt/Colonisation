@@ -6,6 +6,6 @@ public class StartBotSpawner : BotSpawner
 
     private void OnEnable()
     {
-        _building.AddBot(SpawnBot(transform.position));
+        _building.AddBot(Spawn(transform.position));
     }
 }

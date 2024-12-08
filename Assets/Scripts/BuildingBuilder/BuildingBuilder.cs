@@ -13,13 +13,11 @@ public class BuildingBuilder : MonoBehaviour
     private void OnEnable()
     {
         _mouseTrecker.Pressed += PlaceFlag;
-        _flag.BotDetected += OnBotDetected;
     }
 
     private void OnDisable()
     {
         _mouseTrecker.Pressed -= PlaceFlag;
-        _flag.BotDetected -= OnBotDetected;
     }
 
     public void Activate()
@@ -29,8 +27,9 @@ public class BuildingBuilder : MonoBehaviour
 
     public void Build(Bot bot)
     {
+        bot.FlagDetected += OnBotDetectFlag;
+
         bot.GoToPoint(_flag.Transform.position);
-        _flag.SetupBot(bot);
     }
 
     private void PlaceFlag(Vector3 position)
@@ -42,8 +41,10 @@ public class BuildingBuilder : MonoBehaviour
         FlagPlaced?.Invoke();
     }
 
-    private void OnBotDetected(Bot bot)
+    private void OnBotDetectFlag(Bot bot)
     {
+        bot.FlagDetected -= OnBotDetectFlag;
+
         _buildingSpawner.SpawnBuilding(bot, _flag.Transform.position);
         BuildingSpawned?.Invoke();
     }

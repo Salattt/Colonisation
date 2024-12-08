@@ -5,12 +5,12 @@ public class ResourceHolder : MonoBehaviour
 {
     private List<Resource> _resources = new List<Resource>();
 
+    public bool IsResourceAvaible => _resources.Count > 0;
+
     public void Add(Resource resource)
     {
         _resources.Add(resource); 
     }
-
-    public bool IsResourceAvaible => _resources.Count > 0;
 
     public bool TryGetClosestToPoint(Vector3 point, out Resource closestResource)
     {

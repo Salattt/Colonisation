@@ -7,17 +7,9 @@ public class Holder : MonoBehaviour
     private Resource _target;
     private Transform _transform;
 
-    private bool _isActive = false;
-
     private void Awake()
     {
         _transform = transform;
-    }
-
-    private void Update()
-    {
-        if(_isActive)
-            _target.Transform.position = transform.position;
     }
 
     public void SetupTarget(Resource target)
@@ -25,11 +17,14 @@ public class Holder : MonoBehaviour
         _target = target;
         _target.Transform.rotation = _transform.rotation;
         _target.Transform.localScale *= ScaleMultiplier;
-        _isActive = true;
+
+        _target.transform.SetParent(_transform);
+
+        _target.transform.localPosition = Vector3.zero;
     }
 
     public void Stop()
     {
-        _isActive = false;
+        _target.transform.parent = null;
     }
 }

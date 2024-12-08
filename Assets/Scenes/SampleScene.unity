@@ -185,17 +185,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &96917386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5456006677655748899, guid: a268049f45895c142a5091e46e44c65a, type: 3}
+  m_PrefabInstance: {fileID: 425506847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &191628668 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2813030562613152057, guid: a268049f45895c142a5091e46e44c65a, type: 3}
   m_PrefabInstance: {fileID: 425506847}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 245325699}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f896bd43af600004e878c87dfc8e5b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &245325699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8453797523815582273, guid: a268049f45895c142a5091e46e44c65a, type: 3}
+  m_PrefabInstance: {fileID: 425506847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &245325705
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245325699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.857483, y: 9.193626, z: 9.786265}
+  m_Center: {x: -0.0000009536743, y: -0.00000023841858, z: -0.0000019073486}
 --- !u!1001 &425506847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207,6 +230,10 @@ PrefabInstance:
       propertyPath: _mouseButton
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1757177032536585076, guid: a268049f45895c142a5091e46e44c65a, type: 3}
+      propertyPath: _pointToTransferResource
+      value: 
+      objectReference: {fileID: 96917386}
     - target: {fileID: 3211350922759212691, guid: a268049f45895c142a5091e46e44c65a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -269,6 +296,74 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a268049f45895c142a5091e46e44c65a, type: 3}
+--- !u!1 &619518999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619519002}
+  - component: {fileID: 619519001}
+  - component: {fileID: 619519000}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &619519000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619518999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &619519001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619518999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &619519002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619518999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

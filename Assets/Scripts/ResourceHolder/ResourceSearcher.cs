@@ -7,7 +7,7 @@ public class ResourceSearcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Resource resource) && resource.IsPickedUp == false)
+        if(other.TryGetComponent(out Resource resource))
         {
             _holder.Add(resource);
         }

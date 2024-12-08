@@ -9,7 +9,6 @@ public class Resource : MonoBehaviour
     public event Action<Resource> Destroyed;
 
     public Transform Transform {  get; private set; }
-    public bool IsPickedUp { get; private set; } = false;
 
     private void Awake()
     {
@@ -19,13 +18,7 @@ public class Resource : MonoBehaviour
 
     public void ReturnToDefault()
     {
-        IsPickedUp = false;
         Transform.localScale = _startScale;
-    }
-
-    public void PickUp()
-    {
-        IsPickedUp = true;
     }
 
     public void Transfer()

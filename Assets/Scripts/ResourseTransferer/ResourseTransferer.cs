@@ -7,7 +7,7 @@ public class ResourseTransferer : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.TryGetComponent(out Resource resource) && resource.IsPickedUp)
+        if(other.TryGetComponent(out Bot bot) && bot.TryGetResource(out Resource resource))
         {
             _warehouse.AddResource();
             resource.Transfer();

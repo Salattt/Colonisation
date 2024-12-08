@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Building : MonoBehaviour
@@ -15,6 +16,8 @@ public class Building : MonoBehaviour
     private bool _isBuilderActive = false;
     private bool _isBotRequestSended = false;
 
+    public event Action<int> ResourceAdded;
+
     private void Awake()
     {
         _transform = transform;
@@ -26,6 +29,8 @@ public class Building : MonoBehaviour
         _builder.BuildingSpawned += OnBuildingSpawned;
         _builder.FlagPlaced += OnFlagPlaced;
         _botHandler.RequestComplitted += OnRequestComplitted;
+
+        ResourceAdded?.Invoke(_warehouse.ResourceQuantity);
     }
 
     private void OnDisable()
@@ -52,11 +57,15 @@ public class Building : MonoBehaviour
                 _isBotRequestSended = true;
             }
 
+            ResourceAdded?.Invoke(_warehouse.ResourceQuantity);
+
             return;
         }
 
         if (_warehouse.TryGetResource(_resourceToSpawnBot))
-            _botHandler.Add(_botSpawner.SpawnBot(_transform.position));
+            _botHandler.Add(_botSpawner.Spawn(_transform.position));
+
+        ResourceAdded?.Invoke(_warehouse.ResourceQuantity);
     }
 
     private void OnFlagPlaced()
@@ -69,6 +78,7 @@ public class Building : MonoBehaviour
     private void OnBuildingSpawned()
     {
         _isBuilderActive = false;
+        _isBotRequestSended = false;
     }
 
     private void OnRequestComplitted(Bot bot)

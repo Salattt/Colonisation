@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BotMover : MonoBehaviour
@@ -7,7 +8,7 @@ public class BotMover : MonoBehaviour
 
     private Transform _transform;
     private Vector3 _target;
-    private bool _isMoving;
+    private Coroutine _movingRoutine;
 
     private void Awake()
     {
@@ -15,30 +16,38 @@ public class BotMover : MonoBehaviour
         _distanceToStop *= _distanceToStop;
     }
 
-    private void Update()
-    {
-        if (_isMoving)
-            Move();
-
-        if(_isMoving && (_target - _transform.position).sqrMagnitude < _distanceToStop)
-            _isMoving = false;
-    }
-
     public void SetupTarget(Vector3 target)
     {
         _target = target;
-        _isMoving = true;
+
+        if(_movingRoutine != null)
+            StopCoroutine(_movingRoutine);
+
+        _movingRoutine = StartCoroutine(MoveRoutine());
     }
 
     public void Stop()
     {
-        _isMoving = false;
+        StopCoroutine(_movingRoutine);
     }
 
     private void Move()
     {
-        Vector3 direction = (_target - _transform.position).normalized;
+        _transform.position += (_target - _transform.position).normalized * _speed * Time.fixedDeltaTime;
+    }
 
-        _transform.position += direction * _speed * Time.deltaTime;
+    private IEnumerator MoveRoutine()
+    {
+        WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+
+        while (true) 
+        {
+            Move();
+
+            if ((_target - _transform.position).sqrMagnitude < _distanceToStop)
+                Stop();
+
+            yield return waitForFixedUpdate;
+        }
     }
 }

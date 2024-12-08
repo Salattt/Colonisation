@@ -8,19 +8,17 @@ public class Collector : MonoBehaviour
 
     private Resource _target;
 
-    public event Action ResourceCollected;
+    public event Action<Resource> ResourceCollected;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Resource resource) && resource == _target)
         {
-            ResourceCollected?.Invoke();
+            ResourceCollected?.Invoke(resource);
 
             resource.Transfered += OnResourceTransfered;
 
             _holder.SetupTarget(resource);
-
-            resource.PickUp();
         }
     }
 

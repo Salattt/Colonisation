@@ -11,7 +11,7 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
         _transform = transform;
     }
 
-    protected T Spawn(Vector3 position)
+    public T Spawn(Vector3 position)
     {
         return Instantiate(_blueprint, position, _transform.rotation);
     }
